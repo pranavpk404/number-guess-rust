@@ -1,3 +1,4 @@
+use colored::*;
 use rand::Rng;
 use std::{cmp::Ordering, io};
 fn main() {
@@ -17,17 +18,15 @@ fn main() {
             Ok(num) => num,
             Err(_) => continue,
         };
-
-        println!("secret_number:{secret_number}");
         println!("You guessed: {guess}");
 
         match guess.cmp(&secret_number) {
-            Ordering::Less => println!("Small"),
+            Ordering::Less => println!("{}", "Try Higher".red()),
             Ordering::Equal => {
-                println!("You Win");
+                println!("{}", "You Win".green());
                 break;
             }
-            Ordering::Greater => println!("Great"),
+            Ordering::Greater => println!("{}", "Try Lower".red()),
         }
     }
 }
